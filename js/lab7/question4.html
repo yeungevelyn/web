@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #display:hover{
+     transform: scale(2);
+    }
+  </style>
+
+  <script>
+    function changeColor(color) {
+      console.log(color);
+      //get ele by id
+      var display = document.getElementById("display");
+      //valid color
+      if (color == "Green") {
+        display.style.color = "Green";
+      } else if (color == "Orange") {
+        display.style.color = "Orange";
+      } else if (color == "Blue") {
+        display.style.color = "Blue";
+      }
+
+    }
+  </script>
+</head>
+<body>
+<h1 id="display" align="center">University of Wollongong</h1>
+<button onclick="changeColor('Green')">Green</button>
+<button onclick="changeColor('Orange')">Orange</button>
+<button onclick="changeColor('Blue')">Blue</button>
+</body>
+</html>

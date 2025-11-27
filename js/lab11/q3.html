@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  div{
+    font-size: 100px;
+    margin: 20px;
+  }
+</style>
+<script>
+  function dragStart(event){
+    //get the dragged element ID
+    var dragId = event.target.id;
+    //store the dragged element ID into the
+    //dataTransfer objet
+    event.dataTransfer.setData("dragId",dragId);
+  }
+
+
+
+  var cat = "";
+  var dog = "";
+  function drop(event) {
+    //get the drop element ID
+    var dropId =event.target.id;
+    //retrieve the dragged element ID from the dataTransfer object
+    var dragId = event.dataTransfer.getData("dragId");
+    var displayCat = document.getElementById("displayCat");
+    var displayDog = document.getElementById("displayDog");
+    //dropping logic
+    if (dragId == "cat" && dropId =="catText" ){
+      //creat img element
+      var cat = document.createElement("img");
+      displayCat.appendChild(cat);
+      cat.src ="cat.png";
+    }else if(dragId == "dog" && dropId =="dogText"){
+      //creat img element
+      var dog = document.createElement("img");
+      displayDog.appendChild(dog);
+      dog.src ="dog.png";
+    }
+
+  }
+
+  function dragover(event){
+    event.preventDefault();
+  }
+</script>
+<body>
+
+<div>
+  <span id="dogText" ondrop="drop(event)" ondragover="dragover(event)">DOG</span>
+  <span id="displayDog"></span>
+</div>
+<div>
+  <span id="catText" ondrop="drop(event)" ondragover="dragover(event)">CAT</span>
+  <span id ="displayCat"></span>
+</div>
+<div>
+  <img id="cat" draggable="true " src="cat.png" width="10%" ondragstart="dragStart(event)"/>
+  <img id="dog" draggable="true " src="dog.png" width="10%" ondragstart="dragStart(event)"/>
+</div>
+</body>
+</html>

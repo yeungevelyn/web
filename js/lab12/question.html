@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    function checkJSON(){
+      //get input
+      var msg = document.getElementById("msg").value;
+      //display validation
+      var display = document.getElementById("display");
+      //parse msg to  object
+      try{
+        var msgObj = JSON.parse(msg);
+        // alert("JSON is valid");
+        display.innerHTML = "JSON is valid";
+        display.style.color = "green";
+      }catch(e){
+        display.innerHTML = e.message;
+        display.style.color = "red";
+      }
+    }
+
+    //check if the browser supports web storage or not
+    function storageSupported(){
+      if (typeof(Storage)!= "undefined"){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    function setMsg(){
+      //get value
+      var msg = document.getElementById("msg").value;
+      //store value into local storage
+      localStorage.setItem("msg",msg);
+    }
+    function keepInput(){
+      if(storageSupported ()){
+        //get data
+        var data = localStorage.getItem("msg");
+        //alert(data);
+        //show msg on web
+        var msg = document.getElementById("msg");
+        msg.value = data;
+      }
+    }
+  </script>
+</head>
+<body onload="keepInput()">
+<div>
+  <p>Enter JSON to validate:</p>
+</div>
+
+<textarea id = "msg" onchange="setMsg()" rows="5" cols="20"></textarea>
+<div>
+  <button onclick="checkJSON()">Validate JSON</button><span id="display"></span>
+</div>
+
+</body>
+</html>

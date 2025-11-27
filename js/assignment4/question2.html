@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    table,td,th {
+      border-style: solid;
+      border-collapse: collapse;
+    }
+    table{
+      margin: 10px;
+    }
+    .host{
+      width: 100px;
+      padding-left: 5px;
+      text-align: left;
+    }
+    .activity{
+      padding-left: 5px;
+      text-align: left;
+      width: 150px;
+    }
+    .cost{
+      padding-left: 5px;
+      text-align: left;
+      width: 50px;
+    }
+
+  </style>
+  <script>
+    function makeAjaxquery(){
+      console.log("on load");
+      //create an XMLHttpRequest()
+      var xhttp =  new XMLHttpRequest();
+      //create a handler for the readyState change
+      xhttp.onreadystatechange =  function(){
+        console.log("request");
+        readyStateChangeHandler(xhttp);
+      }
+      //making query by async call
+      xhttp.open("GET","record.json",true);
+      xhttp.send();
+    }
+    //handler for the readyState change
+    function readyStateChangeHandler(xhttp){
+      console.log(xhttp);
+      if(xhttp.readyState == 4){
+        if(xhttp.status == 200){
+          handleStatusSuccess(xhttp);
+        }else{
+          handleStatusFailure(xhttp);
+        }
+      }
+    }
+
+    function handleStatusSuccess(xhttp){
+      var json = xhttp.responseText;
+      var obj = JSON.parse(json)
+      //display msg on page
+      display(obj);
+    }
+
+    function handleStatusFailure (xhttp){
+      var display = document.getElementById("display");
+      display.innerHTML="XMLHttpRequest failed: status "+xhttp.status;
+    }
+
+    function display(obj){
+      console.log("display");
+      var html = "<dl>";
+      html += "<dt><ins><b><i>Listing, date: "+obj.date+"</i></b></ins></dt>";
+      html += "<br/>";
+      //first list
+      html += "<dd><ins><i>Strong spirit</i></ins>";
+      html += "<table><tr><th class='host'>host</th><th class='activity'>activity</th><th class='cost'>cost</th></tr>";
+      //for loop first table
+      for(var i = 0; i<obj.strongSpiritList.length; i++){
+        var strongSpirit = obj.strongSpiritList[i];
+        html += "<tr><td class='host'>"+strongSpirit.host+"</td>" +
+          "<td class='activity'>"+strongSpirit.activity+"</td>"+
+          "<td class='cost'>"+strongSpirit.cost+"</td></tr>";
+      }
+      html += "</table></dd>";
+      //second list
+      html += "<dd><ins><i>Ocean waives</i></ins>";
+      html += "<table><tr><th class='host'>host</th><th class='activity'>activity</th><th class='cost'>cost</th></tr>";
+      //for loop second table
+      for(var i = 0; i<obj.oceanWaivesList.length; i++){
+        var oceanWaives = obj.oceanWaivesList[i];
+        html += "<tr><td class='host'>"+oceanWaives.host+"</td>" +
+          "<td class='activity'>"+oceanWaives.activity+"</td>"+
+          "<td class='cost'>"+oceanWaives.cost+"</td></tr>";
+      }
+      html += "</table></dd>";
+      //third list
+      html += "<dd><ins><i>Community friends</i></ins>";
+      html += "<table><tr><th class='host'>host</th><th class='activity'>activity</th><th class='cost'>cost</th></tr>";
+      //for loop third table
+      for(var i = 0; i<obj.communityFriendsList.length; i++){
+        var communityFriends = obj.communityFriendsList[i];
+        html += "<tr><td class='host'>"+communityFriends.host+"</td>" +
+          "<td class='activity'>"+communityFriends.activity+"</td>"+
+          "<td class='cost'>"+communityFriends.cost+"</td></tr>";
+      }
+      html += "</table></dd>";
+      html += "</dl>";
+      var display = document.getElementById("display");
+      display.innerHTML = html;
+
+    }
+  </script>
+</head>
+<body onload="makeAjaxquery()">
+<span id="display"></span>
+</body>
+</html>

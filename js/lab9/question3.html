@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    var totalNumber =0;
+
+    function addOrder(){
+      //get input values
+      var bookTitle = document.getElementById("bookTitle").value;
+      var productCode = document.getElementById("productCode").value;
+      var quantity = document.getElementById("quantity").value;
+      //create list item
+      var book = productCode+": "+bookTitle;
+      var bookText = document.createTextNode(book);
+      var li =document.createElement("li");
+      li.appendChild(bookText);
+      //add new item into unordered list
+      var bookList = document.getElementById("bookList");
+      bookList.appendChild(li);
+      //calculate total number
+      totalNumber += Number(quantity);
+      var total  = document.getElementById("total");
+      total.innerHTML ="Total number of books ordered: " +totalNumber;
+    }
+
+  </script>
+</head>
+<body>
+<div>Enter book title: <input type="text " id="bookTitle"/> </div>
+<div>Enter product code: <input type="text " id="productCode"/> </div>
+<div>Enter quantity: <input type="text " id="quantity"/> </div>
+<div><button onclick="addOrder()">Add to order</button></div>
+<ul id ="bookList">
+
+</ul>
+<div id="total"/>
+</body>
+</html>

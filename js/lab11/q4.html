@@ -1,0 +1,101 @@
+<html>
+<header>
+  <script>
+    function mathQuestion() {
+      //get random numbers
+      var num1 = Math.floor(Math.random()*10)+1;
+      var num2 = Math.floor(Math.random()*10)+1;
+      //get span
+      var number1 = document.getElementById("number1");
+      var number2 = document.getElementById("number2");
+      number1.innerHTML = String(num1);
+      number2.innerHTML = String(num2);
+    }
+    function validateForm(){
+      //get random numbers from webpage
+      var number1 = document.getElementById("number1").innerHTML;
+      var number2 = document.getElementById("number2").innerHTML;
+      //calculate number
+      var result = Number(number1)+Number(number2);
+      //get calculate number from user
+      var number = document.getElementById("result").value;
+      if(Number(number.trim())== result){
+        return true;
+      }else{
+        var error = document.getElementById("error");
+        error.innerHTML = "Wrong!"
+        return false;
+      }
+    }
+  </script>
+</header>
+<body onload="mathQuestion()">
+<h1>Whosville library book search</h1>
+<table>
+  <form action="http://library.whosville/bsearch" method="get" onsubmit="return validateForm()">
+    <tr>
+      <td>
+        Author name:
+      </td>
+      <td>
+        <input type="text" name="author"/>
+      </td>
+
+
+    </tr>
+
+    <tr>
+      <td>
+        Publication year:
+      </td>
+
+      <td>
+        <input type="text" name="year"/>
+      </td>
+
+    </tr>
+
+    <tr>
+      <td>
+        Subject:
+      </td>
+      <td>
+        <input type="checkbox" name="sub" value="mth"/> Mathematics<br/>
+        <input type="checkbox" name="sub" value="cs"/> Computer Science<br/>
+        <input type="checkbox" name="sub" value="bio"/> Biology<br/>
+        <input type="checkbox" name="sub" value="phy"/> Physics<br/>
+        <input type="checkbox" name="sub" value="chem"/> Chemistry<br/>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Prove that you are not a robot:
+      </td>
+      <td>
+        <span id="number1"></span> + <span id="number2"></span> =
+        <input id="result" type="text" style="width: 30px"/>
+        <span id ="error" style="color:red"></span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      </td>
+      <td>
+        <input type="submit"> <input type="reset" value="Clear">
+      </td>
+    </tr>
+
+  </form>
+</table>
+
+
+
+
+
+
+
+</body>
+
+
+</html>

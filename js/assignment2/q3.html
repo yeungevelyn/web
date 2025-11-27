@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    //initialize a flag
+    var flag ="number-name";
+    function changePosition(){
+      //get ele by id
+      var number = document.getElementById("number");
+      var name = document.getElementById("name");
+      //check position
+      if(flag=="number-name"){
+        //swap position
+        number.innerHTML = "CSIT884";
+        number.style.color = "yellow";
+        name.innerHTML = "8962868";
+        number.style.color = "orange";
+        //change flag
+        flag ="name-number"
+      }else{
+        //swap position
+        number.innerHTML = "8962868";
+        number.style.color = "orange";
+        name.innerHTML = "CSIT884";
+        name.style.color = "yellow";
+        //change flag
+        flag ="number-name";
+      }
+    }
+  </script>
+</head>
+
+<body>
+<div>
+  <font color="orange" id="number">8962868</font>
+  <font color="yellow" id="name">CSIT884</font>
+</div>
+
+<p onmouseover="changePosition()">&#128526;</p>
+
+</body>
+</html>

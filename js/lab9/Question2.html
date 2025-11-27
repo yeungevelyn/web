@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    function makeAjaxquery(){
+      //create an XMLHttpRequest
+      var xhttp = new XMLHttpRequest();
+      //create a handler for the readyState change
+      xhttp.onreadystatechange=function (){
+        readyStateChangeHandler(xhttp);
+      };
+      //making query by async call
+      xhttp.open("GET","airport.json",true);
+      xhttp.send();
+    }
+    //callback function
+    //handler for the readyState change
+    function readyStateChangeHandler(xhttp){
+      if (xhttp.readyState == 4) {
+        //readyState =4 means Done
+        if (xhttp.status == 200) {
+          //status = 200 means Ok
+          handleStatusSuccess(xhttp);
+        } else {
+          //status is NOT Ok
+          handleStatusFailure(xhttp);
+        }
+      }
+    }
+    //XMLHttpRequest success
+    function handleStatusSuccess(xhttp){
+      //get response Json
+      var jsonText = xhttp.responseText;
+      //parse the json into an object
+      var obj = JSON.parse(jsonText);
+      //display the object on the page
+      display(obj);
+    }
+    //XMLHttpRequest failed
+    function handleStatusFailure (xhttp){
+      //display error message
+      var display = document.getElementById("display");
+      display.innerHTML = "XMLHttpRequest failed: status" + xhttp.status;
+    }
+    //display the object on the page
+    function display (obj) {
+      //construct HTML code to display market information
+      var html = "<table border ='1'>";
+      html += "<tr><td><b>Airport</b></td><td><b>ICAO</b></td><td><b>IATA</b></td><td><b>Location</b></td><tr/>";
+      for (var i =0; i< obj.searchResult.length; i++){
+        var airportObj = obj.searchResult[i];
+        html += "<tr>";
+        html += "<td>"+airportObj.airportName+"</td>"
+        html += "<td>"+airportObj.ICAO+"</td>"
+        html += "<td>"+airportObj.IATA+"</td>"
+        html += "<td>"+airportObj.city+","+airportObj.country+"</td>"
+        html += "<tr/>"
+      }
+      html += "</table>";
+      //show the constructed HTML code in the display div
+      var display = document.getElementById("display");
+      display.innerHTML = html;
+    }
+  </script>
+</head>
+<body>
+
+<div><button onclick="makeAjaxquery()">Search Airport</button></div> <br/>
+<div>Search Query: Australia</div> <br/>
+<span id ="display">
+</span>
+
+</body>
+</html>

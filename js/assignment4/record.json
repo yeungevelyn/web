@@ -1,0 +1,44 @@
+{
+  "date": "20/09/2025",
+  "strongSpiritList": [
+    {
+      "host": "Maria",
+      "activity": "Be creative",
+      "cost": "$10"
+    },
+    {
+      "host": "Sam",
+      "activity": "Visual art",
+      "cost": "Free"
+    }
+  ],
+  "oceanWaivesList": [
+    {
+      "host": "John",
+      "activity": "Youth counselling",
+      "cost": "free"
+    },
+    {
+      "host": "Mei",
+      "activity": "Music workshop",
+      "cost": "$15"
+    },
+    {
+      "host": "Anabella",
+      "activity": "Singing together",
+      "cost": "$20"
+    }
+  ],
+  "communityFriendsList": [
+    {
+      "host": "Anaya",
+      "activity": "IT workshop",
+      "cost": "$10"
+    },
+    {
+      "host": "Lee",
+      "activity": "Parents workshop",
+      "cost": "$12"
+    }
+  ]
+}

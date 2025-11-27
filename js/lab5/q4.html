@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    var counter =0;
+    var counterSchedule;
+    function startCounterAnimation(){
+      //check the animation whether starts
+      if(counterSchedule==null){
+        //start the counter animation
+        counterSchedule = setInterval(showCounter, 1000);
+      }else{
+        return;
+      }
+
+    }
+    function showCounter(){
+      //increase the counter
+      counter = counter +1;
+      //show the counter
+      var counterSpan = document.getElementById("counter");
+      counterSpan.innerHTML=counter;
+    }
+    function stopCounterAnimation(){
+      //stop the counter animation
+      clearInterval(counterSchedule)
+    }
+  </script>
+</head>
+<body>
+<button onclick="startCounterAnimation()">Start counter animation</button>
+<button onclick="stopCounterAnimation()">Stop counter animation</button> <br/><br/>
+<font size="7">
+  <span id="counter">0</span>
+</font>
+
+</body>
+</html>

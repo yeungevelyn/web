@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    function getFacultyDetails(){
+      //create an XMLHttpeRequest
+      var xhttp = new XMLHttpRequest();
+      //create a handler for the readyState change
+      xhttp.onreadystatechange = function (){
+        readyStateChangeHandler(xhttp);
+      };
+      //making query by async call
+      xhttp.open("GET","faculty.json",true);
+      xhttp.send();
+    }
+    //handler for the readyState change
+    function readyStateChangeHandler(xhttp){
+      //readyState = 4 means done
+      if(xhttp.readyState == 4){
+        //status = 200 means ok
+        if (xhttp.status == 200){
+          handleStatusSuccess(xhttp);
+        }else{
+          handleStatusFailure(xhttp);
+        }
+      }
+    }
+    //XMLHttpRequest failed
+    function handleStatusFailure(xhttp){
+      //display error message
+      var display = document.getElementById("display");
+      display.innerHTML = "XMLHttpRequest failed: status" + xhttp.status;
+    }
+    //XMLHttpRequest success
+    function handleStatusSuccess(xhttp){
+      var jsonText = xhttp.responseText;
+      //parse the json into an object
+      var obj = JSON.parse(jsonText);
+      //display the object on the page
+      display(obj);
+    }
+    //display the object on the page
+    function display(obj){
+      var html ="<div><b>Name: </b>"+obj.name+"</div>";
+      html += "<div><b>Abbreviation: </b>"+obj.abbreviation+"</div>";
+      html += "<div><b>Email: </b>"+obj.email+"</div>";
+      html += "<div><b>Email: </b>"+obj.web+"</div>";
+      //show html
+      var display = document.getElementById("display");
+      display.innerHTML = html;
+    }
+
+  </script>
+</head>
+<body>
+<button onclick="getFacultyDetails()"> Get Faculty Details</button>
+<span id="display"></span>
+</body>
+</html>

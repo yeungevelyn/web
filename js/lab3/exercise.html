@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    function consoleHi(){
+      //console
+      console.log("Hi there! JavaScript is cool!");
+    }
+    function alertHi(){
+      //alert
+      alert("Hi there! JavaScript is cool!");
+    }
+    // function display(text){
+    //   //get element of text field
+    //   var display = document.getElementById("display");
+    //   //get
+    //   display.value=text;
+    // }
+    function displayLion(){
+      //get element by id
+      var display = document.getElementById("display");
+      //display text
+      display.value = "The Lion Button is clicked"
+    }
+    function displayFrog(){
+      //get element by id
+      var display = document.getElementById("display");
+      //display text
+      display.value = "The Frog Button is clicked"
+    }
+    function showLion(){
+      //get element by id
+      var displayImg = document.getElementById("displayImg");
+      //show picture
+      displayImg.src="lion.jpg";
+    }
+    function showFrog(){
+      //get element by id
+      var displayImg = document.getElementById("displayImg");
+      //show picture
+      displayImg.src="frog.jpg";
+    }
+    //initialize click number of lion
+    var clickLion = 0;
+    function roar(){
+      //get element by id
+      // var showMsg = document.getElementById("showMsg");
+      var lion = document.getElementById("lion");
+      clickLion = clickLion+1;
+      //show msg
+      // showMsg.innerHTML = "Roar";
+      // showMsg.style.color = "orange";
+      //change clicks
+      lion.innerHTML=clickLion;
+      lion.style.color="orange"
+    }
+    //initialize click number of frog
+    var clickFrog = 0;
+    function ribbit(){
+      //get element by id
+      // var showMsg = document.getElementById("showMsg");
+      var frog = document.getElementById("frog");
+      clickFrog = clickFrog+1;
+      //show msg
+      // showMsg.innerHTML = "Ribbit";
+      // showMsg.style.color = "green"
+      //change clicks
+      frog.innerHTML=clickFrog;
+      frog.style.color="green"
+    }
+    var face ="";
+    function createEmoji(){
+      //get element by id
+      var frogFace = document.getElementById("frogFace");
+      //add face
+      face = face + "&#x1F438;";
+      //show face
+      frogFace.innerHTML = face;
+    }
+    function changeImg() {
+      //get element by id
+      var showPic = document.getElementById("showPic");
+      var userInput = document.getElementById("userInput");
+      //get input
+      var input = userInput.value;
+      if(input == "display lion"){
+        //change src
+        showPic.src="lion.jpg";
+      }else if (input == "display frog"){
+        showPic.src="frog.jpg";
+      }else{
+        alert("Invalid command");
+      }
+    }
+    var flag= "frog-lion";
+    function swapImg(){
+      //get ele by id
+      var frog=document.getElementById("f");
+      var lion=document.getElementById("l");
+      // determine the positon
+      if(flag=="frog-lion"){
+        //swap the img
+        frog.src="lion.jpg";
+        lion.src="frog.jpg";
+        //change the positon
+        flag="lion-frog";
+      }else{
+        //swap the img
+        frog.src="frog.jpg";
+        lion.src="lion.jpg";
+        //change the positon
+        flag="frog-lion";
+      }
+    }
+  </script>
+</head>
+<body>
+  <button onClick="consoleHi()">Console Hi</button>
+  <button onClick="alertHi()">Alert Hi</button> <hr>
+
+  <button onClick="displayLion()">Lion</button>
+  <button onClick="displayFrog()">Frog</button> <br/><br/>
+
+  <input size="50px" type="text" id="display"/> <hr/>
+
+  <button onClick="showLion()">Lion</button>
+  <button onClick="showFrog()">Frog</button> <br/>
+  <img width="100px" id="displayImg"/> <hr/>
+
+  <img width="100px" onClick="roar()" src="lion.jpg"/>
+  <img width="100px" onClick="ribbit()" src="frog.jpg"/>
+  <div id="showMsg" />
+  Number of lion clicks: <span id="lion">0</span> <br/>
+  Number of frog clicks: <span id="frog">0</span> <hr/>
+
+  <img src="frog.png" onClick="createEmoji()"/>
+  <div id="frogFace"></div><hr/>
+
+  Enter command: <input id="userInput" onChange="changeImg()"/><br/>
+  <img width="100px" id="showPic"/><hr/> <br/>
+
+  <img width="100px" height="100px" id="f" src="frog.jpg" onmouseover="swapImg()"/>
+  <img width="100px" height="100px" id="l" src="lion.jpg" onmouseover="swapImg()"/>
+
+
+
+</body>
+</html>

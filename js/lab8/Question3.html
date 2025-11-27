@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    function showJson(){
+      //get input
+      var code = document.getElementById("code").value;
+      var title = document.getElementById("title").value;
+      var credit = document.getElementById("credit").value;
+      var subject = document.getElementById("subject");
+      console.log(subject)
+      //creat a student object
+      var subjectObject ={};
+      subjectObject.code = code;
+      subjectObject.title =title;
+      subjectObject.credit =credit;
+      if(subject.checked){
+        subjectObject.subject ="true";
+      }else{
+        subjectObject.subject ="false";
+      }
+
+      //get JSON string from the javascript object
+      var studentJSON = JSON.stringify(subjectObject);
+      //show JSON
+      document.getElementById("display").value = studentJSON;
+    }
+  </script>
+</head>
+<body>
+  <div>Subject code: <input id="code" type="text"/></div>
+  <div>Subject title: <input id="title" type="text"/></div>
+  <div>Subject credit point: <input id="credit" type="text"/></div>
+  <div>Core subject: <input id="subject" type="checkbox"/></div>
+  <br/>
+  <div><button onclick="showJson()">View JSON</button></div>
+  <span><textarea id="display"></textarea></span>
+</body>
+</html>

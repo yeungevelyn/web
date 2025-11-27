@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    function showJson(){
+      //get input
+      var textJSON = document.getElementById("display").value;
+      //get javascript object from JSON string
+      var subjectObj = JSON.parse(textJSON);
+      //display the object to inputs
+      var code = document.getElementById("code");
+      var title = document.getElementById("title");
+      var credit = document.getElementById("credit");
+      var subject = document.getElementById("subject");
+      code.value = subjectObj.code;
+      title.value = subjectObj.title;
+      credit.value= subjectObj.credit;
+      if(subjectObj.subject=="true") {
+        subject.checked=true;
+      }else{
+        subject.checked=false;
+      }
+
+
+    }
+  </script>
+</head>
+<body>
+<span><textarea id="display"></textarea></span>
+<div><button onclick="showJson()">View JSON</button></div>
+<br/>
+<div>Subject code: <input id="code" type="text"/></div>
+<div>Subject title: <input id="title" type="text"/></div>
+<div>Subject credit point: <input id="credit" type="text"/></div>
+<div>Core subject: <input id="subject" type="checkbox"/></div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    // initialize variables
+    var schedule;
+    //show slide function
+    function showSlide(){
+      //get a random number
+      var imgNum = Math.floor(Math.random()*6)+1;
+      console.log(imgNum)
+      //get ele by id
+      var slideShow = document.getElementById("slideShow");
+      slideShow.src="img"+imgNum+".jpg";
+    }
+
+    function startSlideshow(){
+      //start animation
+      if(schedule == null){
+        schedule= setInterval(showSlide,1200);
+      }else {
+        return
+      }
+
+    }
+
+    function stopSlideshow(){
+      //stop animation
+      clearInterval(schedule);
+    }
+
+  </script>
+
+</head>
+<body>
+<button onclick="startSlideshow()">Start Slideshow</button>
+<button onclick="stopSlideshow()">Stop Slideshow</button> <br/><br/>
+<span>
+  <img  height="400px" id="slideShow"/>
+</span>
+
+</body>
+</html>

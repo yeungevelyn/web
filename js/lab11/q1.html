@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    function drawTriangle(){
+      //get the canvas's 2d context
+      var canvas = document.getElementById("mycanvas");
+      var context = canvas.getContext("2d");
+      //get user input
+      var x1 = document.getElementById("x1").value;
+      var y1 = document.getElementById("y1").value;
+      var x2 = document.getElementById("x2").value;
+      var y2 = document.getElementById("y2").value;
+      var x3 = document.getElementById("x3").value;
+      var y3 = document.getElementById("y3").value;
+      //specify the path
+      context.beginPath();
+      context.moveTo(x1,y1);
+      context.lineTo(x2,y2);
+      context.lineTo(x3,y3);
+      context.closePath();
+      context.fillStyle = "purple";
+      context.fill();
+      //make the stroke along the path
+      context.strokeStyle="purple";
+      context.lineWidth = "4";
+      context.stroke();
+      //fillText
+      var a1 = Number(x1)+2;
+      var a2 = Number(y1)+2;
+      var b1 = Number(x2)+2;
+      var b2 = Number(y2)+2;
+      var c1 = Number(x3)-2;
+      var c2 = Number(y3)+2;
+      context.font="bold 20px Arial";
+      context.fillStyle = "black";
+      context.fillText("A",a1,a2);
+      context.fillText("B",b1,b2);
+      context.fillText("C",c1,c2);
+      //draw stroke
+      //get median point
+      var xa = Number(x2)+(Number(x3)-Number(x2))/2;
+      var ya = Number(y2)+(Number(y3)-Number(y2))/2;
+      var xb = Number(x1)+(Number(x3)-Number(x1))/2;
+      var yb = Number(y1)+(Number(y3)-Number(y1))/2;
+      var xc = Number(x1)+(Number(x2)-Number(x1))/2;
+      var yc = Number(y1)+(Number(y2)-Number(y1))/2;
+      context.beginPath();
+      context.moveTo(x1,y1);//A
+      context.lineTo(xa,ya);
+      context.moveTo(x2,y2);//B
+      context.lineTo(xb,yb);
+      context.moveTo(x3,y3);//C
+      context.lineTo(xc,yc);
+      context.strokeStyle = "white";
+      context.lineWidth = "3";
+      context.stroke();
+    }
+
+  </script>
+</head>
+<body>
+<div>Enter coordinate for 1st point: X=<input id="x1" type="text"> Y=<input id="y1" type="text"></div><br/>
+<div>Enter coordinate for 2nd point: X=<input id="x2" type="text"> Y=<input id="y2" type="text"></div><br/>
+<div>Enter coordinate for 3rd point: X=<input id="x3" type="text"> Y=<input id="y3" type="text"></div><br/>
+<br/>
+<canvas id="mycanvas" width="1000" height="500" style="border:1px dashed black"></canvas>
+<br/>
+<button onclick="drawTriangle()">Draw triangle</button>
+</body>
+</html>

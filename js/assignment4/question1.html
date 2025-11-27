@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Funny page</title>
+  <style>
+    h1 {
+      color: blue;
+    }
+    div {
+      border-style: solid;
+      border-color: black;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      margin: 20px;
+      width: 200px;
+      height: 20px;
+      background-color: pink;
+      color: blue;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    #one:hover{
+      transform: translateX(30px) translateY(30px);
+    }
+
+    #two:hover{
+      transform: rotate(-45deg);
+    }
+
+    #three:hover{
+      transform: scale(2);
+    }
+  </style>
+  <script>
+    function changeColor(){
+      //generate random number 1-4
+      colorNum = Math.floor(Math.random()*4)+1;
+      //get element by id
+      h1color = document.getElementById("h1color");
+      if(colorNum == 1){
+        h1color.style.color="red";
+      }else if (colorNum == 2){
+        h1color.style.color="green";
+      }else if(colorNum == 3){
+        h1color.style.color="violet";
+      }else if(colorNum == 4){
+        h1color.style.color="orange";
+      }
+
+    }
+  </script>
+</head>
+<body>
+<h1 id="h1color" onMouseOver="changeColor()" >This is for fun</h1>
+<div id="one">ONE</div>
+<div id="two">TWO</div>
+<div id="three">THREE</div>
+</body>
+</html>
